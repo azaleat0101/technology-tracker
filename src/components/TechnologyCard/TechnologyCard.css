@@ -46,6 +46,7 @@
   font-size: 1.25rem;
   color: #333;
   flex: 1;
+  line-height: 1.4;
 }
 
 .status-icon {
@@ -67,10 +68,20 @@
   margin-bottom: 12px;
   color: #666;
   font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .notes-icon {
   font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.notes-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-footer {
@@ -105,14 +116,20 @@
 .date-indicator {
   font-size: 0.85rem;
   color: #666;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 8px;
+  border-radius: 12px;
 }
 
-.card-container {
-  position: relative;
-  transition: all 0.3s ease;
+/* Подсветка найденных слов */
+.search-highlight {
+  background-color: #ffeb3b;
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 600;
 }
 
-/* Стиль для анимации подсветки */
+/* Анимация подсветки для случайного выбора */
 @keyframes pulse-highlight {
   0% {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -125,6 +142,27 @@
   }
 }
 
-.card-container.highlighted {
+.technology-card.highlighted {
   animation: pulse-highlight 2s ease-in-out;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .technology-card {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .date-indicator {
+    align-self: flex-end;
+  }
 }
