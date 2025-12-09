@@ -38,6 +38,7 @@ export const roadmapService = {
     });
   },
 
+  // Функция остается, но не используется в UI
   exportRoadmap: (roadmapData) => {
     const dataStr = JSON.stringify(roadmapData, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });

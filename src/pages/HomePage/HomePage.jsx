@@ -11,25 +11,40 @@ function HomePage({ roadmap, onRoadmapLoaded, onTopicUpdate }) {
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [localRoadmap, setLocalRoadmap] = useState(roadmap);
+
+  // Обновляем локальное состояние при изменении пропса
+  React.useEffect(() => {
+    setLocalRoadmap(roadmap);
+  }, [roadmap]);
 
   const handleFileLoaded = async (file) => {
     try {
       const roadmapData = await roadmapService.loadRoadmapFromFile(file);
-      onRoadmapLoaded(roadmapData);
+      const loadedRoadmap = {
+        ...roadmapData,
+        id: roadmapData.id || `roadmap_${Date.now()}`
+      };
+      
+      // Сохраняем в localStorage
+      storageService.saveRoadmap(loadedRoadmap.id, loadedRoadmap);
+      localStorage.setItem('currentRoadmapId', loadedRoadmap.id);
+      
+      // Обновляем состояние
+      setLocalRoadmap(loadedRoadmap);
+      if (onRoadmapLoaded) {
+        onRoadmapLoaded(loadedRoadmap);
+      }
       setError('');
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const handleExport = () => {
-    if (roadmap) {
-      roadmapService.exportRoadmap(roadmap);
-    }
-  };
-
   const handleStatusChange = (topicId, newStatus) => {
-    const updatedTopics = roadmap.topics.map(topic => 
+    if (!localRoadmap) return;
+    
+    const updatedTopics = localRoadmap.topics.map(topic => 
       topic.id === topicId 
         ? { 
             ...topic, 
@@ -42,29 +57,47 @@ function HomePage({ roadmap, onRoadmapLoaded, onTopicUpdate }) {
     );
     
     const updatedRoadmap = {
-      ...roadmap,
+      ...localRoadmap,
       topics: updatedTopics
     };
     
-    onTopicUpdate(updatedRoadmap);
-    storageService.saveRoadmap(roadmap.id, updatedRoadmap);
+    // Сохраняем в состояние
+    setLocalRoadmap(updatedRoadmap);
+    
+    // Сохраняем в localStorage
+    storageService.saveRoadmap(updatedRoadmap.id, updatedRoadmap);
+    
+    // Уведомляем родительский компонент
+    if (onTopicUpdate) {
+      onTopicUpdate(updatedRoadmap);
+    }
   };
 
   const handleUpdateAllTopics = (updatedTopics) => {
+    if (!localRoadmap) return;
+    
     const updatedRoadmap = {
-      ...roadmap,
+      ...localRoadmap,
       topics: updatedTopics
     };
     
-    onTopicUpdate(updatedRoadmap);
-    storageService.saveRoadmap(roadmap.id, updatedRoadmap);
+    // Сохраняем в состояние
+    setLocalRoadmap(updatedRoadmap);
+    
+    // Сохраняем в localStorage
+    storageService.saveRoadmap(updatedRoadmap.id, updatedRoadmap);
+    
+    // Уведомляем родительский компонент
+    if (onTopicUpdate) {
+      onTopicUpdate(updatedRoadmap);
+    }
   };
 
   // Функция для фильтрации по поисковому запросу и статусу
   const getFilteredTopics = () => {
-    if (!roadmap || !roadmap.topics) return [];
+    if (!localRoadmap || !localRoadmap.topics) return [];
     
-    let filtered = roadmap.topics;
+    let filtered = localRoadmap.topics;
     
     // 1. Фильтрация по поисковому запросу
     if (searchQuery.trim() !== '') {
@@ -85,14 +118,18 @@ function HomePage({ roadmap, onRoadmapLoaded, onTopicUpdate }) {
   };
 
   const filteredTopics = getFilteredTopics();
-  const totalTopics = roadmap?.topics?.length || 0;
-  const stats = roadmap ? roadmapService.getStats(roadmap.topics) : { 
+  const totalTopics = localRoadmap?.topics?.length || 0;
+
+  // Рассчитываем статистику
+  const stats = localRoadmap ? roadmapService.getStats(localRoadmap.topics) : { 
     completed: 0, 
     inProgress: 0, 
     notStarted: 0 
   };
+  
+  const progress = localRoadmap ? roadmapService.calculateProgress(localRoadmap.topics) : 0;
 
-  if (!roadmap) {
+  if (!localRoadmap) {
     return (
       <div className="home-page">
         <div className="welcome-section">
@@ -113,10 +150,21 @@ function HomePage({ roadmap, onRoadmapLoaded, onTopicUpdate }) {
             <div className="sample-cards">
               <button 
                 className="sample-card"
-                onClick={() => {
-                  fetch('/roadmaps/react-roadmap.json')
-                    .then(res => res.json())
-                    .then(data => onRoadmapLoaded(data));
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/roadmaps/react-roadmap.json');
+                    const data = await response.json();
+                    const loadedRoadmap = {
+                      ...data,
+                      id: data.id || `roadmap_${Date.now()}`
+                    };
+                    storageService.saveRoadmap(loadedRoadmap.id, loadedRoadmap);
+                    localStorage.setItem('currentRoadmapId', loadedRoadmap.id);
+                    setLocalRoadmap(loadedRoadmap);
+                    if (onRoadmapLoaded) onRoadmapLoaded(loadedRoadmap);
+                  } catch (error) {
+                    setError('Ошибка загрузки примера: ' + error.message);
+                  }
                 }}
               >
                 <span>⚛️</span>
@@ -126,10 +174,21 @@ function HomePage({ roadmap, onRoadmapLoaded, onTopicUpdate }) {
               
               <button 
                 className="sample-card"
-                onClick={() => {
-                  fetch('/roadmaps/javascript-roadmap.json')
-                    .then(res => res.json())
-                    .then(data => onRoadmapLoaded(data));
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/roadmaps/javascript-roadmap.json');
+                    const data = await response.json();
+                    const loadedRoadmap = {
+                      ...data,
+                      id: data.id || `roadmap_${Date.now()}`
+                    };
+                    storageService.saveRoadmap(loadedRoadmap.id, loadedRoadmap);
+                    localStorage.setItem('currentRoadmapId', loadedRoadmap.id);
+                    setLocalRoadmap(loadedRoadmap);
+                    if (onRoadmapLoaded) onRoadmapLoaded(loadedRoadmap);
+                  } catch (error) {
+                    setError('Ошибка загрузки примера: ' + error.message);
+                  }
                 }}
               >
                 <span>📜</span>
@@ -143,24 +202,23 @@ function HomePage({ roadmap, onRoadmapLoaded, onTopicUpdate }) {
     );
   }
 
-  const progress = roadmapService.calculateProgress(roadmap.topics);
-
   return (
     <div className="home-page">
       <div className="roadmap-header">
         <div>
-          <h1>{roadmap.title}</h1>
-          <p className="roadmap-description">{roadmap.description}</p>
+          <h1>{localRoadmap.title}</h1>
+          <p className="roadmap-description">{localRoadmap.description}</p>
         </div>
-        <button className="export-button" onClick={handleExport}>
-          📥 Экспортировать прогресс
-        </button>
+        {/* УБРАЛИ КНОПКУ ЭКСПОРТА */}
       </div>
 
-      <ProgressBar progress={progress} stats={stats} />
+      <ProgressBar 
+        progress={progress} 
+        stats={stats}
+      />
 
       <QuickActions 
-        roadmap={roadmap}
+        roadmap={localRoadmap}
         onUpdateAllTopics={handleUpdateAllTopics}
       />
 

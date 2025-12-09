@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 function Header({ roadmap, onReset }) {
-  const handleNewRoadmapClick = (e) => {
+  const handleNewRoadmap = () => {
     if (roadmap && onReset) {
-      if (window.confirm('Загрузить новую карту? Текущий прогресс будет сохранен.')) {
+      if (window.confirm('Загрузить новую карту? Текущий прогресс будет сохранен в localStorage.')) {
         onReset();
-      } else {
-        e.preventDefault(); // Отменяем переход если пользователь отказался
       }
     }
-    // Если roadmap нет, просто разрешаем переход
   };
 
   return (
@@ -28,13 +25,12 @@ function Header({ roadmap, onReset }) {
         {roadmap && (
           <span className="roadmap-title">{roadmap.title}</span>
         )}
-        <Link 
-          to="/" 
+        <button 
           className="new-roadmap-btn"
-          onClick={handleNewRoadmapClick}
+          onClick={handleNewRoadmap}
         >
           {roadmap ? 'Новая карта' : 'Начать'}
-        </Link>
+        </button>
       </div>
     </header>
   );

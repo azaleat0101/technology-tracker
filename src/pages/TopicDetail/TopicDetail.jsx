@@ -13,16 +13,29 @@ function TopicDetail({ roadmap, onTopicUpdate }) {
 
   useEffect(() => {
     if (roadmap && id) {
-      const foundTopic = roadmap.topics.find(t => t.id.toString() === id);
+      const foundTopic = roadmap.topics.find(t => t.id.toString() === id.toString());
       if (foundTopic) {
         setTopic(foundTopic);
         setUserNotes(foundTopic.userNotes || '');
         setTargetDate(foundTopic.targetDate || '');
+      } else {
+        // Если тема не найдена, пробуем найти по числовому ID
+        const numericId = parseInt(id, 10);
+        if (!isNaN(numericId)) {
+          const foundByNumericId = roadmap.topics.find(t => t.id === numericId);
+          if (foundByNumericId) {
+            setTopic(foundByNumericId);
+            setUserNotes(foundByNumericId.userNotes || '');
+            setTargetDate(foundByNumericId.targetDate || '');
+          }
+        }
       }
     }
   }, [roadmap, id]);
 
   const handleStatusChange = (newStatus) => {
+    if (!roadmap || !topic) return;
+    
     const updatedTopics = roadmap.topics.map(t => 
       t.id === topic.id 
         ? { 
@@ -34,27 +47,45 @@ function TopicDetail({ roadmap, onTopicUpdate }) {
     );
     
     const updatedRoadmap = { ...roadmap, topics: updatedTopics };
-    onTopicUpdate(updatedRoadmap);
-    setTopic(updatedTopics.find(t => t.id === topic.id));
+    
+    // Сохраняем в localStorage
     storageService.saveRoadmap(roadmap.id, updatedRoadmap);
+    
+    // Обновляем состояние
+    setTopic(updatedTopics.find(t => t.id === topic.id));
+    
+    // Уведомляем родительский компонент
+    if (onTopicUpdate) {
+      onTopicUpdate(updatedRoadmap);
+    }
   };
 
   const handleSaveNotes = () => {
+    if (!roadmap || !topic) return;
+    
     const updatedTopics = roadmap.topics.map(t => 
       t.id === topic.id 
         ? { 
             ...t, 
             userNotes, 
-            targetDate: targetDate || null,
-            status: targetDate && !t.completedDate ? 'in-progress' : t.status
+            targetDate: targetDate || null
           }
         : t
     );
     
     const updatedRoadmap = { ...roadmap, topics: updatedTopics };
-    onTopicUpdate(updatedRoadmap);
+    
+    // Сохраняем в localStorage
     storageService.saveRoadmap(roadmap.id, updatedRoadmap);
+    
+    // Обновляем состояние
+    setTopic(updatedTopics.find(t => t.id === topic.id));
     setIsEditing(false);
+    
+    // Уведомляем родительский компонент
+    if (onTopicUpdate) {
+      onTopicUpdate(updatedRoadmap);
+    }
   };
 
   if (!topic) {

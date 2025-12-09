@@ -11,6 +11,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Пытаемся загрузить roadmap из localStorage
     const savedRoadmapId = localStorage.getItem('currentRoadmapId');
     if (savedRoadmapId) {
       const savedRoadmap = storageService.loadRoadmap(savedRoadmapId);
@@ -26,9 +27,12 @@ function App() {
       ...roadmapData,
       id: roadmapData.id || `roadmap_${Date.now()}`
     };
+    
     setRoadmap(roadmapWithId);
     localStorage.setItem('currentRoadmapId', roadmapWithId.id);
     storageService.saveRoadmap(roadmapWithId.id, roadmapWithId);
+    
+    return roadmapWithId;
   };
 
   const handleTopicUpdate = (updatedRoadmap) => {
@@ -81,6 +85,9 @@ function App() {
         
         <footer className="App-footer">
           <p>Персональный трекер освоения технологий | React Практическое занятие</p>
+          <p className="footer-note">
+            Использование переиспользуемых компонентов и localStorage
+          </p>
         </footer>
       </div>
     </Router>
