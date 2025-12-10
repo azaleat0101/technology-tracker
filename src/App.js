@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { storageService } from './services/storageService';
 import HomePage from './pages/HomePage/HomePage';
 import TopicDetail from './pages/TopicDetail/TopicDetail';
+import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
+import SettingsPage from './pages/SettingsPage/SettingsPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Header from './components/Header/Header';
 import './App.css';
 
@@ -56,6 +59,7 @@ function App() {
         
         <main className="main-content">
           <Routes>
+            {/* Главная страница - всегда доступна */}
             <Route 
               path="/" 
               element={
@@ -66,19 +70,47 @@ function App() {
                 />
               } 
             />
+            
+            {/* Детальная страница темы - защищенный маршрут */}
             <Route 
               path="/topic/:id" 
               element={
-                roadmap ? (
-                  <TopicDetail 
-                    roadmap={roadmap}
-                    onTopicUpdate={handleTopicUpdate}
-                  />
-                ) : (
-                  <Navigate to="/" />
-                )
+                <ProtectedRoute>
+                  {roadmap ? (
+                    <TopicDetail 
+                      roadmap={roadmap}
+                      onTopicUpdate={handleTopicUpdate}
+                    />
+                  ) : (
+                    <Navigate to="/" />
+                  )}
+                </ProtectedRoute>
               } 
             />
+            
+            {/* Страница статистики - защищенный маршрут */}
+            <Route 
+              path="/statistics" 
+              element={
+                <ProtectedRoute>
+                  {roadmap ? (
+                    <StatisticsPage />
+                  ) : (
+                    <Navigate to="/" />
+                  )}
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* Страница настроек - всегда доступна */}
+            <Route 
+              path="/settings" 
+              element={
+                <SettingsPage />
+              } 
+            />
+            
+            {/* Обработка несуществующих маршрутов */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>

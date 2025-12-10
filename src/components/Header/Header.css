@@ -5,6 +5,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
@@ -30,6 +33,34 @@
   margin: 0;
 }
 
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link:hover {
+  background: #f8f9fa;
+  color: #667eea;
+}
+
+.nav-link.active {
+  background: #667eea;
+  color: white;
+}
+
 .header-actions {
   display: flex;
   gap: 1rem;
@@ -42,7 +73,7 @@
   padding: 0.5rem 1rem;
   background: #f8f9fa;
   border-radius: 6px;
-  max-width: 300px;
+  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -62,4 +93,39 @@
 
 .new-roadmap-btn:hover {
   background: #5a67d8;
+}
+
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .header-nav {
+    order: 3;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .header-actions {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-text h1 {
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .roadmap-title {
+    max-width: 150px;
+  }
 }

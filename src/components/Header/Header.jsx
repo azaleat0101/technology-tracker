@@ -1,14 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 function Header({ roadmap, onReset }) {
+  const location = useLocation();
+
   const handleNewRoadmap = () => {
     if (roadmap && onReset) {
       if (window.confirm('Загрузить новую карту? Текущий прогресс будет сохранен в localStorage.')) {
         onReset();
       }
     }
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path ? 'active' : '';
   };
 
   return (
@@ -20,6 +26,22 @@ function Header({ roadmap, onReset }) {
           <p>Персональный трекер освоения технологий</p>
         </div>
       </Link>
+      
+      <nav className="header-nav">
+        <Link to="/" className={`nav-link ${isActive('/')}`}>
+          🏠 Главная
+        </Link>
+        
+        {roadmap && (
+          <Link to="/statistics" className={`nav-link ${isActive('/statistics')}`}>
+            📊 Статистика
+          </Link>
+        )}
+        
+        <Link to="/settings" className={`nav-link ${isActive('/settings')}`}>
+          ⚙️ Настройки
+        </Link>
+      </nav>
       
       <div className="header-actions">
         {roadmap && (
