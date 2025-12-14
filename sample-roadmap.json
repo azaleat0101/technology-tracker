@@ -1,0 +1,107 @@
+{
+  "title": "Full Stack Developer Roadmap 2025",
+  "description": "Полный путь становления Full Stack разработчика в 2025 году",
+  "version": "1.0",
+  "technologies": [
+    {
+      "title": "HTML5 & Semantic HTML",
+      "description": "Изучение современной разметки и семантических тегов",
+      "category": "frontend",
+      "difficulty": "beginner",
+      "resources": [
+        "https://developer.mozilla.org/ru/docs/Web/HTML",
+        "https://html.com"
+      ]
+    },
+    {
+      "title": "CSS3 & Flexbox/Grid",
+      "description": "Современные методы верстки и расположения элементов",
+      "category": "frontend",
+      "difficulty": "beginner",
+      "resources": [
+        "https://developer.mozilla.org/ru/docs/Web/CSS",
+        "https://css-tricks.com"
+      ]
+    },
+    {
+      "title": "JavaScript (ES6+)",
+      "description": "Современный JavaScript: промисы, async/await, модули",
+      "category": "frontend",
+      "difficulty": "intermediate",
+      "resources": [
+        "https://learn.javascript.ru",
+        "https://developer.mozilla.org/ru/docs/Web/JavaScript"
+      ]
+    },
+    {
+      "title": "React Ecosystem",
+      "description": "React, React Router, State Management",
+      "category": "frontend",
+      "difficulty": "intermediate",
+      "resources": [
+        "https://react.dev",
+        "https://redux.js.org"
+      ]
+    },
+    {
+      "title": "Node.js & Express",
+      "description": "Создание серверных приложений на JavaScript",
+      "category": "backend",
+      "difficulty": "intermediate",
+      "resources": [
+        "https://nodejs.org",
+        "https://expressjs.com"
+      ]
+    },
+    {
+      "title": "Database Fundamentals",
+      "description": "SQL и NoSQL базы данных",
+      "category": "database",
+      "difficulty": "intermediate",
+      "resources": [
+        "https://www.postgresql.org",
+        "https://www.mongodb.com"
+      ]
+    },
+    {
+      "title": "Git & GitHub",
+      "description": "Система контроля версий и совместная работа",
+      "category": "tools",
+      "difficulty": "beginner",
+      "resources": [
+        "https://git-scm.com",
+        "https://github.com"
+      ]
+    },
+    {
+      "title": "Docker & Containers",
+      "description": "Контейнеризация приложений",
+      "category": "devops",
+      "difficulty": "advanced",
+      "resources": [
+        "https://www.docker.com",
+        "https://kubernetes.io"
+      ]
+    },
+    {
+      "title": "Testing (Jest, React Testing Library)",
+      "description": "Тестирование frontend и backend приложений",
+      "category": "testing",
+      "difficulty": "intermediate",
+      "resources": [
+        "https://jestjs.io",
+        "https://testing-library.com"
+      ]
+    },
+    {
+      "title": "CI/CD Fundamentals",
+      "description": "Непрерывная интеграция и доставка",
+      "category": "devops",
+      "difficulty": "advanced",
+      "resources": [
+        "https://www.jenkins.io",
+        "https://docs.github.com/actions"
+      ]
+    }
+  ]
+}

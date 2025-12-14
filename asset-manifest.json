@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/technology-tracker/static/css/main.fd50582a.css",
+    "main.js": "/technology-tracker/static/js/main.ce0d529e.js",
+    "index.html": "/technology-tracker/index.html",
+    "main.fd50582a.css.map": "/technology-tracker/static/css/main.fd50582a.css.map",
+    "main.ce0d529e.js.map": "/technology-tracker/static/js/main.ce0d529e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd50582a.css",
+    "static/js/main.ce0d529e.js"
+  ]
+}
