@@ -1,0 +1,425 @@
+.roadmap-importer {
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Светлая тема для импортера */
+body.light .roadmap-importer {
+  background: white;
+}
+
+/* Темная тема для импортера */
+body.dark .roadmap-importer {
+  background: #1e1e1e;
+}
+
+.importer-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+body.light .importer-title {
+  color: #333;
+}
+
+body.dark .importer-title {
+  color: #fff;
+}
+
+.importer-actions {
+  margin-bottom: 20px;
+}
+
+.example-button {
+  border: 1px solid;
+  color: #7b1fa2;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+body.light .example-button {
+  background: #f3e5f5;
+  border-color: #ce93d8;
+}
+
+body.light .example-button:hover {
+  background: #e1bee7;
+  transform: translateY(-2px);
+}
+
+body.dark .example-button {
+  background: rgba(156, 39, 176, 0.2);
+  border-color: #ba68c8;
+  color: #ce93d8;
+}
+
+body.dark .example-button:hover {
+  background: rgba(156, 39, 176, 0.3);
+  transform: translateY(-2px);
+}
+
+.drop-zone {
+  border: 2px dashed;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Светлая тема для drop-zone */
+body.light .drop-zone {
+  background: #fafafa;
+  border-color: #bdbdbd;
+}
+
+body.light .drop-zone.dragging {
+  border-color: #1976d2;
+  background: #e3f2fd;
+}
+
+body.light .drop-zone.error {
+  border-color: #f44336;
+  background: #ffebee;
+}
+
+/* Темная тема для drop-zone */
+body.dark .drop-zone {
+  background: #2d2d2d;
+  border-color: #555;
+}
+
+body.dark .drop-zone.dragging {
+  border-color: #1976d2;
+  background: rgba(25, 118, 210, 0.1);
+}
+
+body.dark .drop-zone.error {
+  border-color: #f44336;
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.drop-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.drop-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  opacity: 0.7;
+}
+
+.drop-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+body.light .drop-text {
+  color: #555;
+}
+
+body.dark .drop-text {
+  color: #ccc;
+}
+
+.drop-subtext {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+body.light .drop-subtext {
+  color: #888;
+}
+
+body.dark .drop-subtext {
+  color: #999;
+}
+
+.file-button {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+body.light .file-button {
+  background: #1976d2;
+  color: white;
+}
+
+body.light .file-button:hover {
+  background: #1565c0;
+}
+
+body.dark .file-button {
+  background: #0d47a1;
+  color: white;
+}
+
+body.dark .file-button:hover {
+  background: #1565c0;
+}
+
+.file-input {
+  display: none;
+}
+
+.error-message {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #f44336;
+  font-size: 14px;
+}
+
+body.light .error-message {
+  background: #ffebee;
+  color: #c62828;
+}
+
+body.dark .error-message {
+  background: rgba(244, 67, 54, 0.1);
+  color: #ef9a9a;
+}
+
+.import-help {
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+body.light .import-help {
+  background: #f8f9fa;
+  border-color: #e0e0e0;
+}
+
+body.dark .import-help {
+  background: #2d2d2d;
+  border-color: #444;
+}
+
+.help-title {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+body.light .help-title {
+  color: #333;
+}
+
+body.dark .help-title {
+  color: #fff;
+}
+
+.help-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.help-list li {
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid;
+}
+
+body.light .help-list li {
+  color: #555;
+  border-bottom-color: #eee;
+}
+
+body.dark .help-list li {
+  color: #ccc;
+  border-bottom-color: #444;
+}
+
+.help-list li:last-child {
+  border-bottom: none;
+}
+
+.example-details {
+  border: 1px solid;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+body.light .example-details {
+  border-color: #e0e0e0;
+}
+
+body.dark .example-details {
+  border-color: #444;
+}
+
+.example-summary {
+  padding: 12px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.light .example-summary {
+  background: #f5f5f5;
+  color: #333;
+}
+
+body.dark .example-summary {
+  background: #2d2d2d;
+  color: #fff;
+}
+
+.example-summary::after {
+  content: '▼';
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.example-details[open] .example-summary::after {
+  transform: rotate(180deg);
+}
+
+.example-code {
+  padding: 20px;
+  margin: 0;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  border-radius: 0 0 6px 6px;
+}
+
+body.light .example-code {
+  background: #263238;
+  color: #fff;
+}
+
+body.dark .example-code {
+  background: #0d1117;
+  color: #c9d1d9;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .roadmap-importer {
+    padding: 20px;
+  }
+  
+  .drop-zone {
+    padding: 30px 15px;
+  }
+  
+  .drop-icon {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .roadmap-importer {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .importer-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .example-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .drop-zone {
+    padding: 25px 15px;
+  }
+  
+  .drop-icon {
+    font-size: 36px;
+  }
+  
+  .drop-text {
+    font-size: 14px;
+  }
+  
+  .drop-subtext {
+    font-size: 13px;
+  }
+  
+  .file-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .import-help {
+    padding: 15px;
+  }
+  
+  .help-title {
+    font-size: 15px;
+  }
+  
+  .help-list li {
+    font-size: 13px;
+  }
+  
+  .example-summary {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .example-code {
+    padding: 15px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmap-importer {
+    padding: 12px;
+  }
+  
+  .importer-title {
+    font-size: 16px;
+  }
+  
+  .drop-zone {
+    padding: 20px 10px;
+  }
+  
+  .drop-icon {
+    font-size: 32px;
+  }
+  
+  .drop-text {
+    font-size: 13px;
+  }
+  
+  .file-button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .error-message {
+    padding: 12px;
+    font-size: 13px;
+  }
+}

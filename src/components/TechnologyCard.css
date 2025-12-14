@@ -1,0 +1,327 @@
+.technology-card {
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ccc;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Светлая тема для карточек */
+body.light .technology-card {
+  background: white;
+  color: #333;
+}
+
+body.light .technology-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Темная тема для карточек */
+body.dark .technology-card {
+  background: #1e1e1e;
+  color: #fff;
+  border-left-color: #444;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+body.dark .technology-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 18px;
+  flex: 1;
+  line-height: 1.3;
+}
+
+body.light .card-title {
+  color: #333;
+}
+
+body.dark .card-title {
+  color: #fff;
+}
+
+.status-button {
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Светлая тема для кнопки статуса */
+body.light .status-button {
+  background: none;
+  border-color: #e0e0e0;
+}
+
+body.light .status-button:hover {
+  background: #f8f9fa;
+  border-color: #ccc;
+}
+
+/* Темная тема для кнопки статуса */
+body.dark .status-button {
+  background: #2d2d2d;
+  border-color: #444;
+}
+
+body.dark .status-button:hover {
+  background: #3d3d3d;
+  border-color: #555;
+}
+
+.status-icon {
+  font-size: 14px;
+}
+
+.status-text {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+body.light .status-text {
+  color: #666;
+}
+
+body.dark .status-text {
+  color: #ccc;
+}
+
+.card-description {
+  font-size: 14px;
+  margin: 10px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.light .card-description {
+  color: #666;
+}
+
+body.dark .card-description {
+  color: #ccc;
+}
+
+.category {
+  margin: 10px 0;
+}
+
+.category-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+body.light .category-badge {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+body.dark .category-badge {
+  background: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+}
+
+.notes-preview {
+  border-left: 3px solid #ffd600;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+body.light .notes-preview {
+  background: #fffde7;
+  color: #5d4037;
+}
+
+body.dark .notes-preview {
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd600;
+}
+
+.notes-icon {
+  flex-shrink: 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid;
+}
+
+body.light .card-footer {
+  border-top-color: #eee;
+}
+
+body.dark .card-footer {
+  border-top-color: #444;
+}
+
+.details-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+body.light .details-button {
+  color: #1976d2;
+}
+
+body.light .details-button:hover {
+  background: #e3f2fd;
+}
+
+body.dark .details-button {
+  color: #90caf9;
+}
+
+body.dark .details-button:hover {
+  background: rgba(144, 202, 249, 0.1);
+}
+
+/* Цвета границ для разных статусов */
+.technology-card[data-status="completed"] {
+  border-left-color: #45b7d1 !important;
+}
+
+.technology-card[data-status="in-progress"] {
+  border-left-color: #4ecdc4 !important;
+}
+
+.technology-card[data-status="not-started"] {
+  border-left-color: #ff6b6b !important;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .technology-card {
+    padding: 18px;
+  }
+  
+  .card-title {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .technology-card {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .status-button {
+    align-self: flex-start;
+  }
+  
+  .card-description {
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+  }
+  
+  .notes-preview {
+    font-size: 12px;
+    padding: 8px;
+  }
+  
+  .details-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .technology-card {
+    padding: 12px;
+  }
+  
+  .card-title {
+    font-size: 15px;
+  }
+  
+  .status-button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .status-text {
+    font-size: 11px;
+  }
+  
+  .category-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  
+  .notes-preview {
+    font-size: 11px;
+  }
+  
+  .card-footer {
+    padding-top: 10px;
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 360px) {
+  .technology-card {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: 14px;
+  }
+  
+  .status-button {
+    font-size: 10px;
+  }
+}

@@ -1,168 +1,110 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  color: #333;
-}
-
-.App {
+/* App.css */
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.95);
+  transition: background-color 0.3s ease;
 }
 
-.main-content {
+/* Светлая тема для всего .app */
+body.light .app {
+  background: #f8f9fa;
+}
+
+/* Темная тема для всего .app - #121212 */
+body.dark .app {
+  background: #121212;
+}
+
+.app-container {
+  display: flex;
   flex: 1;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  width: 100%;
+  min-height: 0;
+  transition: all 0.3s ease;
 }
 
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.5rem;
-  color: #667eea;
+/* Основной контент */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  min-width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  min-height: calc(100vh - 200px);
 }
 
-.App-footer {
+/* Светлая тема для основного контента */
+body.light .main-content {
+  background: #ffffff;
+  color: #333;
+}
+
+/* Темная тема для основного контента - #121212 */
+body.dark .main-content {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* Футер */
+.app-footer {
+  margin-top: auto;
+  padding: 20px;
   text-align: center;
-  padding: 1.5rem;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  color: #6c757d;
-  margin-top: 2rem;
+  border-top: 1px solid;
+  transition: all 0.3s ease;
 }
 
-.footer-note {
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  opacity: 0.8;
+body.light .app-footer {
+  background: #f8f9fa;
+  border-top-color: #e0e0e0;
+  color: #666;
 }
 
-/* Добавьте эти стили в конец файла */
-
-/* Навигация */
-.active-link {
-  position: relative;
+body.dark .app-footer {
+  background: #121212;
+  border-top-color: #333;
+  color: #999;
 }
 
-.active-link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 2px;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Адаптивность навигации */
+.footer-version {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-  .main-content {
-    padding: 1rem;
+  .app-container {
+    flex-direction: column;
+    padding: 0 10px;
   }
   
-  .App-footer {
-    padding: 1rem;
-    font-size: 0.9rem;
+  .main-content {
+    padding: 15px;
+    min-height: calc(100vh - 150px);
+    width: 100%;
+  }
+  
+  .app-footer {
+    padding: 15px;
   }
 }
 
-/* Стили для темной темы */
-[data-theme="dark"] {
-  background: #1a202c;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .App {
-  background: rgba(0, 0, 0, 0.95);
-}
-
-[data-theme="dark"] .header,
-[data-theme="dark"] .progress-container,
-[data-theme="dark"] .quick-actions-container,
-[data-theme="dark"] .search-container,
-[data-theme="dark"] .settings-section,
-[data-theme="dark"] .main-chart,
-[data-theme="dark"] .chart-container,
-[data-theme="dark"] .insights-section,
-[data-theme="dark"] .welcome-section,
-[data-theme="dark"] .statistics-page,
-[data-theme="dark"] .settings-page,
-[data-theme="dark"] .topic-detail,
-[data-theme="dark"] .technology-card {
-  background: #2d3748;
-  color: #e2e8f0;
-  border-color: #4a5568;
-}
-
-[data-theme="dark"] h1,
-[data-theme="dark"] h2,
-[data-theme="dark"] h3,
-[data-theme="dark"] h4 {
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .logo,
-[data-theme="dark"] .nav-link,
-[data-theme="dark"] .roadmap-title,
-[data-theme="dark"] .stat-label,
-[data-theme="dark"] .upload-subtitle,
-[data-theme="dark"] .subtitle,
-[data-theme="dark"] .card-description {
-  color: #cbd5e0;
-}
-
-[data-theme="dark"] .upload-hint,
-[data-theme="dark"] .usage-tips,
-[data-theme="dark"] .insight-card,
-[data-theme="dark"] .info-item,
-[data-theme="dark"] .roadmap-item {
-  background: #4a5568;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .search-input,
-[data-theme="dark"] .setting-select,
-[data-theme="dark"] .time-select {
-  background: #4a5568;
-  border-color: #718096;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .search-input::placeholder {
-  color: #a0aec0;
-}
-
-[data-theme="dark"] .filter-btn,
-[data-theme="dark"] .size-btn {
-  background: #4a5568;
-  border-color: #718096;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .filter-btn.active,
-[data-theme="dark"] .size-btn.active {
-  background: #667eea;
-  color: white;
-}
-
-[data-theme="dark"] .App-footer {
-  background: #2d3748;
-  color: #cbd5e0;
-  border-color: #4a5568;
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+  }
+  
+  .app-footer {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

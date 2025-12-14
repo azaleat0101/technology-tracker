@@ -1,0 +1,623 @@
+/* StatisticsPage.css - ПОЛНАЯ ВЕРСИЯ С ТЕМАМИ */
+/* Все стили должны иметь префиксы body.light или body.dark */
+
+/* Базовые стили страницы */
+body.light .statistics-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: calc(100vh - 200px);
+}
+
+body.dark .statistics-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #121212;
+  min-height: calc(100vh - 200px);
+  color: #e0e0e0;
+}
+
+/* Заголовок страницы */
+body.light .statistics-page .page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+body.dark .statistics-page .page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #333;
+}
+
+body.light .statistics-page .page-header h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+body.dark .statistics-page .page-header h1 {
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+body.light .statistics-page .page-subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+body.dark .statistics-page .page-subtitle {
+  font-size: 16px;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Карточки обзора */
+body.light .statistics-page .overview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+body.dark .statistics-page .overview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+body.light .statistics-page .overview-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+body.dark .statistics-page .overview-card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #e0e0e0;
+}
+
+body.light .statistics-page .overview-icon {
+  font-size: 48px;
+  opacity: 0.8;
+}
+
+body.dark .statistics-page .overview-icon {
+  font-size: 48px;
+  opacity: 0.9;
+}
+
+body.light .statistics-page .overview-content h3 {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+body.dark .statistics-page .overview-content h3 {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+body.light .statistics-page .overview-value {
+  font-size: 32px;
+  color: #333;
+  font-weight: 700;
+}
+
+body.dark .statistics-page .overview-value {
+  font-size: 32px;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Сетка статистики */
+body.light .statistics-page .stats-grid,
+body.dark .statistics-page .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  body.light .statistics-page .stats-grid,
+  body.dark .statistics-page .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.light .statistics-page .stats-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+body.dark .statistics-page .stats-card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #e0e0e0;
+}
+
+body.light .statistics-page .stats-card h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.dark .statistics-page .stats-card h3 {
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Категории */
+body.light .statistics-page .categories-stats,
+body.dark .statistics-page .categories-stats,
+body.light .statistics-page .difficulty-stats,
+body.dark .statistics-page .difficulty-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+body.light .statistics-page .category-item,
+body.light .statistics-page .difficulty-item {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+body.dark .statistics-page .category-item,
+body.dark .statistics-page .difficulty-item {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #333;
+}
+
+body.light .statistics-page .category-item:last-child,
+body.light .statistics-page .difficulty-item:last-child,
+body.dark .statistics-page .category-item:last-child,
+body.dark .statistics-page .difficulty-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+body.light .statistics-page .category-header,
+body.dark .statistics-page .category-header,
+body.light .statistics-page .difficulty-header,
+body.dark .statistics-page .difficulty-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+body.light .statistics-page .category-name,
+body.light .statistics-page .difficulty-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+body.dark .statistics-page .category-name,
+body.dark .statistics-page .difficulty-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+body.light .statistics-page .category-count,
+body.light .statistics-page .difficulty-percentage,
+body.dark .statistics-page .category-count,
+body.dark .statistics-page .difficulty-percentage {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+/* Прогресс-бары */
+body.light .statistics-page .category-progress,
+body.dark .statistics-page .category-progress,
+body.light .statistics-page .difficulty-details,
+body.dark .statistics-page .difficulty-details {
+  margin-top: 10px;
+}
+
+body.light .statistics-page .progress-bar,
+body.light .statistics-page .difficulty-bar {
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+body.dark .statistics-page .progress-bar,
+body.dark .statistics-page .difficulty-bar {
+  height: 8px;
+  background: #333;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+body.light .statistics-page .progress-fill,
+body.dark .statistics-page .progress-fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+body.light .statistics-page .progress-fill.completed,
+body.dark .statistics-page .progress-fill.completed {
+  background: #4CAF50;
+  left: 0;
+}
+
+body.light .statistics-page .progress-fill.in-progress,
+body.dark .statistics-page .progress-fill.in-progress {
+  background: #2196F3;
+  left: 0;
+}
+
+body.light .statistics-page .difficulty-fill,
+body.dark .statistics-page .difficulty-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #2196F3);
+  border-radius: 4px;
+}
+
+body.light .statistics-page .progress-stats,
+body.dark .statistics-page .progress-stats {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+}
+
+body.light .statistics-page .stat,
+body.dark .statistics-page .stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+body.light .statistics-page .stat.completed,
+body.dark .statistics-page .stat.completed {
+  color: #4CAF50;
+}
+
+body.light .statistics-page .stat.in-progress,
+body.dark .statistics-page .stat.in-progress {
+  color: #2196F3;
+}
+
+body.light .statistics-page .stat.not-started,
+body.dark .statistics-page .stat.not-started {
+  color: #FF5722;
+}
+
+body.light .statistics-page .difficulty-counts {
+  font-size: 12px;
+  color: #666;
+  text-align: right;
+}
+
+body.dark .statistics-page .difficulty-counts {
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
+
+/* Недавние задачи */
+body.light .statistics-page .recent-section,
+body.dark .statistics-page .recent-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+}
+
+body.light .statistics-page .recent-list,
+body.dark .statistics-page .recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+body.light .statistics-page .recent-item {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+}
+
+body.dark .statistics-page .recent-item {
+  padding: 15px;
+  background: #2d2d2d;
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+  color: #e0e0e0;
+}
+
+body.light .statistics-page .recent-info,
+body.dark .statistics-page .recent-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+body.light .statistics-page .recent-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+body.dark .statistics-page .recent-title {
+  font-weight: 500;
+  color: #fff;
+  font-size: 14px;
+}
+
+body.light .statistics-page .recent-status,
+body.dark .statistics-page .recent-status {
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+body.light .statistics-page .recent-status.status-completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+body.dark .statistics-page .recent-status.status-completed {
+  background: rgba(46, 125, 50, 0.2);
+  color: #81c784;
+}
+
+body.light .statistics-page .recent-status.status-in-progress {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+body.dark .statistics-page .recent-status.status-in-progress {
+  background: rgba(21, 101, 192, 0.2);
+  color: #64b5f6;
+}
+
+body.light .statistics-page .recent-status.status-not-started {
+  background: #ffebee;
+  color: #c62828;
+}
+
+body.dark .statistics-page .recent-status.status-not-started {
+  background: rgba(198, 40, 40, 0.2);
+  color: #ef9a9a;
+}
+
+body.light .statistics-page .recent-time {
+  font-size: 12px;
+  color: #666;
+}
+
+body.dark .statistics-page .recent-time {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Общая статистика */
+body.light .statistics-page .general-stats,
+body.dark .statistics-page .general-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+body.light .statistics-page .stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+body.dark .statistics-page .stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+}
+
+body.light .statistics-page .stat-item:last-child,
+body.dark .statistics-page .stat-item:last-child {
+  border-bottom: none;
+}
+
+body.light .statistics-page .stat-label {
+  font-size: 14px;
+  color: #666;
+}
+
+body.dark .statistics-page .stat-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+body.light .statistics-page .stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  background: #f5f5f5;
+  padding: 4px 12px;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+body.dark .statistics-page .stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #2d2d2d;
+  padding: 4px 12px;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Пустое состояние */
+body.light .statistics-page .empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-style: italic;
+}
+
+body.dark .statistics-page .empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  body.light .statistics-page,
+  body.dark .statistics-page {
+    padding: 15px;
+  }
+  
+  body.light .statistics-page .stats-grid,
+  body.dark .statistics-page .stats-grid,
+  body.light .statistics-page .recent-section,
+  body.dark .statistics-page .recent-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body.light .statistics-page,
+  body.dark .statistics-page {
+    padding: 10px;
+  }
+  
+  body.light .statistics-page .page-header h1,
+  body.dark .statistics-page .page-header h1 {
+    font-size: 24px;
+  }
+}
+
+/* StatisticsPage.css - дополнения для темной темы */
+
+/* Темная тема для всей страницы статистики */
+body.dark .statistics-page {
+  background: transparent; /* Наследует фон от .main-content */
+  color: #e0e0e0;
+}
+
+/* Карточки в статистике */
+body.dark .stats-card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .overview-card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Текст в темной теме */
+body.dark .page-header h1 {
+  color: #fff;
+}
+
+body.dark .page-subtitle {
+  color: #ccc;
+}
+
+body.dark .overview-content h3 {
+  color: #ccc;
+}
+
+body.dark .category-name,
+body.dark .difficulty-name,
+body.dark .recent-title {
+  color: #e0e0e0;
+}
+
+body.dark .stat-label {
+  color: #ccc;
+}
+
+body.dark .stat-value {
+  background: #2d2d2d;
+  color: #fff;
+}
+
+/* Границы в темной теме */
+body.dark .category-item,
+body.dark .difficulty-item {
+  border-bottom-color: #333;
+}
+
+body.dark .stat-item {
+  border-bottom-color: #333;
+}
+
+/* Прогресс-бары */
+body.dark .progress-bar,
+body.dark .difficulty-bar {
+  background: #333;
+}
+
+/* Недавние элементы */
+body.dark .recent-item {
+  background: #2d2d2d;
+  border-left-color: #1976d2;
+}
+
+/* Адаптивность для темной темы */
+@media (max-width: 768px) {
+  body.dark .statistics-page {
+    background: transparent;
+  }
+}

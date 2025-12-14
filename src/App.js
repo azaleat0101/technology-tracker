@@ -1,128 +1,61 @@
-import React, { useState, useEffect } from 'react';
+// App.js
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { storageService } from './services/storageService';
-import HomePage from './pages/HomePage/HomePage';
-import TopicDetail from './pages/TopicDetail/TopicDetail';
-import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
-import SettingsPage from './pages/SettingsPage/SettingsPage';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import Header from './components/Header/Header';
+import { ThemeProvider } from './context/ThemeContext';
+import { NotificationProvider } from './context/NotificationContext'; // Добавляем
 import './App.css';
 
+// Компоненты
+import Header from './components/Header';
+import Navigation from './components/Navigation';
+
+// Страницы
+import HomePage from './pages/HomePage';
+import TechnologiesPage from './pages/TechnologiesPage';
+import TechnologyDetailPage from './pages/TechnologyDetailPage';
+import AddTechnologyPage from './pages/AddTechnologyPage';
+import StatisticsPage from './pages/StatisticsPage';
+import SettingsPage from './pages/SettingsPage';
+
+// Хуки
+import useTechnologies from './hooks/useTechnologies';
+
 function App() {
-  const [roadmap, setRoadmap] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Пытаемся загрузить roadmap из localStorage
-    const savedRoadmapId = localStorage.getItem('currentRoadmapId');
-    if (savedRoadmapId) {
-      const savedRoadmap = storageService.loadRoadmap(savedRoadmapId);
-      if (savedRoadmap) {
-        setRoadmap(savedRoadmap);
-      }
-    }
-    setLoading(false);
-  }, []);
-
-  const handleRoadmapLoaded = (roadmapData) => {
-    const roadmapWithId = {
-      ...roadmapData,
-      id: roadmapData.id || `roadmap_${Date.now()}`
-    };
-    
-    setRoadmap(roadmapWithId);
-    localStorage.setItem('currentRoadmapId', roadmapWithId.id);
-    storageService.saveRoadmap(roadmapWithId.id, roadmapWithId);
-    
-    return roadmapWithId;
-  };
-
-  const handleTopicUpdate = (updatedRoadmap) => {
-    setRoadmap(updatedRoadmap);
-    storageService.saveRoadmap(updatedRoadmap.id, updatedRoadmap);
-  };
-
-  const handleReset = () => {
-    setRoadmap(null);
-    localStorage.removeItem('currentRoadmapId');
-  };
-
-  if (loading) {
-    return <div className="loading">Загрузка...</div>;
-  }
+  const technologiesData = useTechnologies();
 
   return (
-    <Router>
-      <div className="App">
-        <Header roadmap={roadmap} onReset={handleReset} />
-        
-        <main className="main-content">
-          <Routes>
-            {/* Главная страница - всегда доступна */}
-            <Route 
-              path="/" 
-              element={
-                <HomePage 
-                  roadmap={roadmap}
-                  onRoadmapLoaded={handleRoadmapLoaded}
-                  onTopicUpdate={handleTopicUpdate}
-                />
-              } 
-            />
+    <ThemeProvider>
+      <NotificationProvider> {/* Добавляем провайдер уведомлений */}
+        <Router>
+          <div className="app">
+            <Header progress={technologiesData.progress} />
             
-            {/* Детальная страница темы - защищенный маршрут */}
-            <Route 
-              path="/topic/:id" 
-              element={
-                <ProtectedRoute>
-                  {roadmap ? (
-                    <TopicDetail 
-                      roadmap={roadmap}
-                      onTopicUpdate={handleTopicUpdate}
-                    />
-                  ) : (
-                    <Navigate to="/" />
-                  )}
-                </ProtectedRoute>
-              } 
-            />
+            <div className="app-container">
+              <Navigation />
+              
+              <main className="main-content">
+                <Routes>
+                  <Route path="/" element={<HomePage {...technologiesData} />} />
+                  <Route path="/technologies" element={<TechnologiesPage {...technologiesData} />} />
+                  <Route path="/technology/:id" element={<TechnologyDetailPage {...technologiesData} />} />
+                  <Route path="/add-technology" element={<AddTechnologyPage {...technologiesData} />} />
+                  <Route path="/statistics" element={<StatisticsPage {...technologiesData} />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </main>
+            </div>
             
-            {/* Страница статистики - защищенный маршрут */}
-            <Route 
-              path="/statistics" 
-              element={
-                <ProtectedRoute>
-                  {roadmap ? (
-                    <StatisticsPage />
-                  ) : (
-                    <Navigate to="/" />
-                  )}
-                </ProtectedRoute>
-              } 
-            />
-            
-            {/* Страница настроек - всегда доступна */}
-            <Route 
-              path="/settings" 
-              element={
-                <SettingsPage />
-              } 
-            />
-            
-            {/* Обработка несуществующих маршрутов */}
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </main>
-        
-        <footer className="App-footer">
-          <p>Персональный трекер освоения технологий | React Практическое занятие</p>
-          <p className="footer-note">
-            Использование переиспользуемых компонентов и localStorage
-          </p>
-        </footer>
-      </div>
-    </Router>
+            <footer className="app-footer">
+              <div className="footer-content">
+                <p>© 2024 Трекер изучения технологий. Все права защищены.</p>
+                <p className="footer-version">Версия 1.0.0</p>
+              </div>
+            </footer>
+          </div>
+        </Router>
+      </NotificationProvider>
+    </ThemeProvider>
   );
 }
 

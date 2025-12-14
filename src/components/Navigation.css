@@ -1,0 +1,180 @@
+/* Navigation.css - РАБОЧИЙ ВАРИАНТ */
+.navigation {
+  width: 250px;
+  min-height: calc(100vh - 120px);
+  border-right: 1px solid;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+/* Светлая тема */
+body.light .navigation {
+  background: white;
+  border-right-color: #e0e0e0;
+}
+
+/* Темная тема */
+body.dark .navigation {
+  background: #1e1e1e;
+  border-right-color: #333;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin-bottom: 5px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+/* Светлая тема для ссылок */
+body.light .nav-link {
+  color: #555;
+}
+
+body.light .nav-link:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+body.light .nav-link.active {
+  background: #e3f2fd;
+  color: #1976d2;
+  border-left-color: #1976d2;
+  font-weight: 500;
+}
+
+/* Темная тема для ссылок */
+body.dark .nav-link {
+  color: #ccc;
+}
+
+body.dark .nav-link:hover {
+  background: #2d2d2d;
+  color: #fff;
+}
+
+body.dark .nav-link.active {
+  background: rgba(25, 118, 210, 0.2);
+  color: #90caf9;
+  border-left-color: #1976d2;
+  font-weight: 500;
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+}
+
+.nav-label {
+  font-size: 16px;
+}
+
+/* ВАЖНО: Только ОДИН медиа-запрос для мобилок! */
+@media (max-width: 768px) {
+  .navigation {
+    width: 100% !important; /* Занимает всю ширину */
+    min-height: auto !important; /* Автоматическая высота */
+    height: auto !important; /* Убираем фиксированную высоту */
+    border-right: none !important;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative !important; /* Убираем sticky */
+    top: auto !important;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 0 !important;
+    margin-bottom: 15px;
+  }
+  
+  body.dark .navigation {
+    border-bottom-color: #333;
+  }
+  
+  .nav-list {
+    display: flex !important; /* Горизонтальное меню */
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .nav-list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .nav-item {
+    flex: 1 0 auto; /* Равномерно распределяем */
+    margin-bottom: 0;
+    min-width: 80px;
+    display: block !important;
+  }
+  
+  .nav-link {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px !important;
+    text-align: center;
+    border-left: none !important;
+    border-bottom: 3px solid transparent;
+    min-height: 60px;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .nav-link.active {
+    border-bottom-color: #1976d2 !important;
+    background: #e3f2fd !important;
+  }
+  
+  body.dark .nav-link.active {
+    border-bottom-color: #1976d2 !important;
+    background: rgba(25, 118, 210, 0.2) !important;
+  }
+  
+  .nav-icon {
+    margin: 0 0 5px 0 !important;
+    font-size: 18px;
+    width: auto;
+  }
+  
+  .nav-label {
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+  .nav-link {
+    padding: 8px 3px !important;
+    min-height: 55px;
+  }
+  
+  .nav-icon {
+    font-size: 16px;
+  }
+  
+  .nav-label {
+    font-size: 10px;
+  }
+}

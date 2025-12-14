@@ -1,0 +1,94 @@
+/* components/MemeWidget.css */
+.meme-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+body.dark .meme-widget {
+  background: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.meme-widget h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+body.dark .meme-widget h3 {
+  color: #fff;
+}
+
+.meme-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.meme-title {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  min-height: 40px;
+}
+
+body.dark .meme-title {
+  color: #ccc;
+}
+
+.meme-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.meme-actions button {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.meme-actions button:hover:not(:disabled) {
+  background: #5a67d8;
+}
+
+.meme-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+body.dark .meme-actions button {
+  background: #4c51bf;
+}
+
+.meme-loading,
+.meme-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+
+body.dark .meme-loading,
+body.dark .meme-error {
+  color: #999;
+}
+
+.meme-error button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
